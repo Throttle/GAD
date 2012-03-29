@@ -12,10 +12,12 @@ PDF=rpz.pdf
 DIA=graphics/dia
 DOT=graphics/dot
 SVG=graphics/svg
+
 TEX=tex
 DEPS=.deps
 SRC=src
 INC=$(TEX)/inc
+PNG=$(TEX)/graphics/img/he
 
 # Input files
 # no .tex allowed in MAINTEX!
@@ -60,6 +62,9 @@ $(INC)/svg/%.pdf : $(SVG)/%.svg
 # Обрезаем поля в svg автоматом:
 	inkscape -A $(INC)/svg/$*-tmp.pdf $< && cd $(INC)/svg && ../../../$(PDFTRIMWHITE) $*-tmp.pdf $*.pdf && rm $*-tmp.pdf
 
+$(PNG)/%.png : $(PNG)/%.png
+	mkdir -p $(INC)/img/
+	
 
 # .eps --> .pdf
 $(INC)/%.pdf: $(INC)/%.eps
